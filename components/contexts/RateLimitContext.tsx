@@ -122,14 +122,7 @@ export const RateLimitProvider = ({
 
         // Refill tokens and reset timers
         const perSecondInterval = setInterval(() => {
-            if (tokensPerMinuteRemainingRef.current > 0) {
-                tokensPerSecondRemainingRef.current = Math.min(
-                    tokensPerSecondRemainingRef.current + 1,
-                    adjustedMaxTokensPerSecond
-                );
-            } else {
-                tokensPerSecondRemainingRef.current = 0;
-            }
+            tokensPerSecondRemainingRef.current = adjustedMaxTokensPerSecond
             setTokensPerSecondRemaining(tokensPerSecondRemainingRef.current);
 
             // Set next per-second refill time
