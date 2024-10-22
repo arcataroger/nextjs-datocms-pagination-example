@@ -23,9 +23,9 @@ export interface RateLimitContextProps {
     perMinuteCountdown: number;
     consumeToken: () => Promise<void>;
     executePromisesWithRateLimit: (
-        promiseFns: (() => Promise<any>)[],
+        promiseFns: (() => Promise<unknown>)[],
         onProgressUpdate: (completed: number, pending: number) => void
-    ) => Promise<any[]>;
+    ) => Promise<unknown[]>;
 }
 
 const RateLimitContext = createContext<RateLimitContextProps>({
@@ -157,10 +157,10 @@ export const RateLimitProvider = ({
     // Memoized function to execute promises with rate limiting
     const executePromisesWithRateLimit = useCallback(
         async (
-            promiseFns: (() => Promise<any>)[],
+            promiseFns: (() => Promise<unknown>)[],
             onProgressUpdate: (completed: number, pending: number) => void
-        ): Promise<any[]> => {
-            const results: any[] = [];
+        ): Promise<unknown[]> => {
+            const results: unknown[] = [];
             const totalPromises = promiseFns.length;
             let completed = 0;
 
